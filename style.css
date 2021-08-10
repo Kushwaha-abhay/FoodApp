@@ -2,10 +2,68 @@
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
+    font-family: 'Lato', sans-serif;
 }
 body{
     
-    background-image: url("./Resources/pexels-kristina-paukshtite-1146760.jpg");
+    }
+.showcase{
+    background-image: linear-gradient(rgba(8, 8, 8, 0.411), rgb(0,0,0,1)) ,url("./Resources/pexels-dzenina-lukac-1583884.jpg");
+    height: 100vh;
+    background-size: 100vw;
+}
+.showcase-content{
+    position: absolute;
+    top: 30%;
+    left: 16%;
+}
+.centertext{
+    display: flex;
+    
+    font-size: 500%;
+    color: white;
+}
+.showcase-button{
+    margin-top: 30px;
+    display: flex;
+    width: 64%;
+    height: 50px;
+    justify-content: space-evenly;
+    
+}
+.btn{
+    height: 62px;
+    border-radius: 32px;
+    color: white;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F63854;
+    font-size: 128%;
+    cursor: pointer;
+    transition: transform 0.5s;
+}
+.btn:hover{
+    transform: scale(1.2);
+}
+.btn-fade{
+    height: 62px;
+    border-radius: 32px;
+    color: #F63854;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #F63854;
+    font-size: 128%;
+    cursor: pointer;
+    transition: transform 0.5s;
+}
+.btn-fade:hover{
+    transform: scale(1.2);
+    background: #F63854;
+    color: white;
 }
 .head{
     text-align: right;
@@ -23,13 +81,4 @@ body{
     color: red;
     cursor: pointer;
 }
-.centertext{
-    display: flex;
-    
-    font-size: 101px;
-    color: white;
-}
-.centermessage{
-    padding-top: 219px;
-    padding-left: 162px;
-}
+
