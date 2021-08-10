@@ -11,14 +11,41 @@ body{
     background-image: linear-gradient(rgba(8, 8, 8, 0.411), rgb(0,0,0,1)) ,url("./Resources/pexels-dzenina-lukac-1583884.jpg");
     height: 100vh;
     background-size: 100vw;
+    background-attachment: fixed;
+}
+.navlinks{
+    display: flex;
+    justify-content: flex-end;
+}
+.showcase-ul{
+    display: flex;
+    width: 40%;
+    justify-content: space-around;
+    list-style: none;
+    margin-top: 10px;
+
+}
+.showcase-li{
+   
+}
+.showcase-li a{
+    color: white;
+    text-decoration: none;
+    font-size: 23px;
+}
+.showcase-li a:hover{
+    color: #F63854;
+    cursor: pointer;
 }
 .showcase-content{
     position: absolute;
     top: 30%;
     left: 16%;
 }
+#changing-text{
+    color: #F63854;
+}
 .centertext{
-    display: flex;
     
     font-size: 500%;
     color: white;
@@ -26,11 +53,12 @@ body{
 .showcase-button{
     margin-top: 30px;
     display: flex;
-    width: 64%;
+    width: 375px;
     height: 50px;
     justify-content: space-evenly;
     
 }
+
 .btn{
     height: 62px;
     border-radius: 32px;
