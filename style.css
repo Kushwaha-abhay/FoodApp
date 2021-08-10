@@ -1,0 +1,35 @@
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    
+    background-image: url("./Resources/pexels-kristina-paukshtite-1146760.jpg");
+}
+.head{
+    text-align: right;
+    display: flex;
+    color:white;
+    float: right;
+    font-size: small;
+    
+}
+.items{
+    
+    padding-left: 30px;
+}
+.items:hover{
+    color: red;
+    cursor: pointer;
+}
+.centertext{
+    display: flex;
+    
+    font-size: 101px;
+    color: white;
+}
+.centermessage{
+    padding-top: 219px;
+    padding-left: 162px;
+}
