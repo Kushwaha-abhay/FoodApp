@@ -4,8 +4,22 @@ let word = names[idx];
 let text = "";
 let changingText = document.querySelector("#changing-text");
 let isDelete = false;
+let showcase = document.querySelector(".showcase");
+let navlink = document.querySelector(".navlinks");
+
 window.addEventListener("load", function(){
     typewords();
+    window.addEventListener("scroll", function(){
+       // console.log(showcase.getBoundingClientRect());
+        let {bottom} = showcase.getBoundingClientRect();
+        if(bottom < 0)
+        navlink.classList.add("fixed");
+        else if(bottom > 0)
+        {
+            if(navlink.classList.contains("fixed"))
+                navlink.classList.remove("fixed");
+        }
+    })
 })
 
 function typewords()
