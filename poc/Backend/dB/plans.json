@@ -1,0 +1,11 @@
+[
+  { "id": 1, "plan": "non", "food": "fish" },
+  { "id": 3, "plan": "vegan", "food": "Dal" },
+  { "id": 4, "plan": "vegan", "food": "Rice" },
+  { "id": 5, "plan": "nonveg", "food": "fish" },
+  {
+    "plan": "nonveg",
+    "food": "fish",
+    "id": "d286fb2a-8437-4714-af45-f1eeef487605"
+  }
+]
