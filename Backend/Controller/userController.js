@@ -64,7 +64,6 @@ async function deleteUser(req, res) {
     });
   }}
   
-  
 async function updateUser(req, res) {
   try{
     let id = req.id;
@@ -89,6 +88,7 @@ async function updateUser(req, res) {
       });
     }
 }
+
   
 module.exports.getAllUsers = getAllUsers;
 module.exports.getUsersById = getUsersById;

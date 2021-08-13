@@ -1,5 +1,5 @@
 const express = require("express");
-const { protectRoute ,isAuthorized} = require("../Controller/authController");
+const { protectRoute ,isAuthorized, isAdmin} = require("../Controller/authController");
 const planRouter = express.Router();
 const {
   getAllPlans,
@@ -9,6 +9,7 @@ const {
   updatePlan,
 } = require("../Controller/planController");
 
+//planRouter.use(isAdmin(["admin"]))
 planRouter
 .route("")
 .get(getAllPlans)

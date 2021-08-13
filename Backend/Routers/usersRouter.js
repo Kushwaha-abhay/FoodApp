@@ -2,8 +2,12 @@ const express = require("express");
 const userRouter = express.Router();
 
 const {getAllUsers,getUsersById,createUser,deleteUser,updateUser} = require("../Controller/userController");
-const {singup,login, protectRoute} = require("../Controller/authController");
+const {singup,login, protectRoute,forgetPassword,resetPassword} = require("../Controller/authController");
 
+userRouter.post("/signup",singup);
+userRouter.post("/login",login);
+userRouter.post("/forgetPassword", forgetPassword);
+userRouter.patch("/resetPassword/:token", resetPassword);
 // userRouter
 // .route("")
 // .get(getAllUsers)
@@ -15,7 +19,5 @@ userRouter
 .patch(protectRoute,updateUser)
 .delete(protectRoute,deleteUser);
 
-userRouter.post("/signup",singup);
-userRouter.post("/login",login);
 
 module.exports = userRouter;

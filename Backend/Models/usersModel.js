@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const crypto = require("crypto");
 const {DB_LINK} = require("../config/secrets");
 mongoose
   .connect(DB_LINK, { useNewUrlParser: true, useUnifiedTopology: true }
@@ -22,7 +23,6 @@ let userschema = new mongoose.Schema({
   },
   confirmPassword :{
     type: String,
-    required: true,
     minlength:[6,"Password must be greater than 6 characters"],
     validate : {
         validator :function(){
@@ -36,11 +36,31 @@ let userschema = new mongoose.Schema({
     type :String,
     enum:["admin","user","resturant owner","delivery boy"],
     default : "user"
-}});
+},
+pwdToken : String,
+tokenTime : String
+});
 
 userschema.pre("save",function(){
   this.confirmPassword = undefined
 });
+
+userschema.methods.createPwdToken = function(){
+  //creates token and provides when the method is called
+  let token = crypto.randomBytes(32).toString("hex");
+  let time = Date.now()*60*10*1000;
+
+  this.pwdToken = token;
+  this.tokenTime = time;
+  return token;
+}
+
+userschema.methods.resetPasswordHandler = function(password,confirmPassword){
+  this.password = password;
+  this.confirmPassword = confirmPassword;
+  this.pwdToken = undefined;
+  this.tokenTime = undefined;
+}
 
 let userModel = mongoose.model("userCollection",userschema);
 module.exports = userModel;
