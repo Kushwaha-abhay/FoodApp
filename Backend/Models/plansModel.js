@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
-const dblink = require("../Secrets/secrets");
+const {DB_LINK} = require("../config/secrets");
 mongoose
-  .connect(dblink, { useNewUrlParser: true, useUnifiedTopology: true }
+  .connect(DB_LINK, { useNewUrlParser: true, useUnifiedTopology: true }
   ).then((db) => console.log("plans dB connected..!!"));
 
 let planschema = new mongoose.Schema({

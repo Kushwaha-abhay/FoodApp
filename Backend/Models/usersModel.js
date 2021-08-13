@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
-const dblink = require("../Secrets/secrets");
+const {DB_LINK} = require("../config/secrets");
 mongoose
-  .connect(dblink, { useNewUrlParser: true, useUnifiedTopology: true }
+  .connect(DB_LINK, { useNewUrlParser: true, useUnifiedTopology: true }
   ).then((db) => console.log("users dB connected..!!"));
 
 let userschema = new mongoose.Schema({
@@ -10,9 +10,8 @@ let userschema = new mongoose.Schema({
     required: true,
     maxlength: [40, "Your  name is more than 40 characters"]
   },
-  Email: {
+  email: {
     type: String,
-    required: true,
     required: true,
     unique:true
   },
@@ -38,6 +37,10 @@ let userschema = new mongoose.Schema({
     enum:["admin","user","resturant owner","delivery boy"],
     default : "user"
 }});
+
+userschema.pre("save",function(){
+  this.confirmPassword = undefined
+});
 
 let userModel = mongoose.model("userCollection",userschema);
 module.exports = userModel;

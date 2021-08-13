@@ -13,7 +13,7 @@ async function createUser(req, res) {
   catch(error){
     res.status(501).json({
     message: "User creation failed..!!",
-    error: error.errors.discount.message
+    error: error
     });
   }};
  
@@ -34,10 +34,11 @@ async function getAllUsers(req, res) {
 
 async function getUsersById(req, res) {
   try{
-    let { id } = req.params;
+    let id  = req.id;
+    console.log(req.id);
     let user = await userModel.findById(id);
     res.status(200).json({
-      message: "Result found",
+      message: "Goy user by ID",
       data: user,
     });
   }
@@ -51,12 +52,11 @@ async function getUsersById(req, res) {
   
 async function deleteUser(req, res) {
   try{
-    let { id } = req.params;
+    let id  = req.id;
     await userModel.findByIdAndDelete(id);
     res.status(200).json({
       message:"Delete Successful",
-      
-    })
+   })
   }
   catch{
       res.status(404).json({
@@ -67,19 +67,27 @@ async function deleteUser(req, res) {
   
 async function updateUser(req, res) {
   try{
-  let { id } = req.params;
-  let updateOb = req.body;
-  let updatedUser = await userModel.findByIdAndUpdate(id,updateOb,{new:true})
-  res.status(200).json({
-    message: "Successfully updated",
-      });
-  }
-  catch{
-    res.status(501).json({
-    message: "Failed..to update User",
+    let id = req.id;
+    let updateOb = req.body.updatedOb;
+    // await planModel.findByIdAndUpdate(id,updateOb,{new:true}) ye nai karenge as validator nai kaam karta 
+    let user = await userModel.findById(id);
     
-    });
-  }
+    for(key in updateOb)
+    user[key] = updateOb[key];
+
+    
+    let updatedUser = await user.save();
+    res.status(201).json({
+      message: "Successfully updated",
+      user : updatedUser
+        });
+    }
+    catch(error){
+      res.status(501).json({
+      message: "Failed..to update user",
+      error
+      });
+    }
 }
   
 module.exports.getAllUsers = getAllUsers;

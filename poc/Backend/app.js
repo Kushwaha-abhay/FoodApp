@@ -3,41 +3,49 @@ const app = express();
 const plans = require("./dB/plans.json");
 const fs = require("fs");
 const { v4: uuidv4 } = require("uuid");
-const users = require("./dB/users.json");
-const mongoose = require("mongoose");
-
+//const users = require("./dB/users.json");
+// mongoose = require("mongoose");
+const userModel = require("../../Backend/Models/usersModel");
 /*------MiddleWares---------*/
 //It tracks incoming requests and if there is data in request => feeds the data in req body
 app.use(express.json());
 
+app.post("/api/users/login",async function(req,res){
+  try{
+    let {email,password} = req.body;
+  }
+  catch(error{
+
+  }
+})
 //custom middleware
 app.use(function (req, res, next) {
   // console.log("middleware 1");
   next();
 });
-mongoose
-  .connect(
-    "mongodb+srv://admin:admin@cluster0.tayec.mongodb.net/test?retryWrites=true&w=majority",
-    { useNewUrlParser: true, useUnifiedTopology: true }
-  )
-  .then((db) => console.log(db));
+// mongoose
+//   .connect(
+//     "mongodb+srv://admin:admin@cluster0.tayec.mongodb.net/test?retryWrites=true&w=majority",
+//     { useNewUrlParser: true, useUnifiedTopology: true }
+//   )
+//   .then((db) => console.log(db));
 
-  let planschema = new mongoose.Schema({
-    name:String,
-    price:Number
-  });
-  const planModel = mongoose.model("planCollection" , planschema);
-  planModel.create({
-    name:"Ram",
-    price:1234
-  }).then(
-    (plan) =>{
-      console.log(plan)
-    }).catch(
-    (error)=>{
-      console.log(error);
-    }
-  )
+  // let planschema = new mongoose.Schema({
+  //   name:String,
+  //   price:Number
+  // });
+  // const planModel = mongoose.model("planCollection" , planschema);
+  // planModel.create({
+  //   name:"Ram",
+  //   price:1234
+  // }).then(
+  //   (plan) =>{
+  //     console.log(plan)
+  //   }).catch(
+  //   (error)=>{
+  //     console.log(error);
+  //   }
+  // )
 /*---------------users--------*/
 //get all users
 app.get("/api/users", function (req, res) {

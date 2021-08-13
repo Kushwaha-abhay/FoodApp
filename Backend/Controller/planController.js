@@ -20,10 +20,7 @@ async function createPlan(req, res) {
     error: error.errors.discount.message
     });
   }};
- 
-
-
-async function getAllPlans(req, res) {
+ async function getAllPlans(req, res) {
   try{
     let plans = await planModel.find({})
     res.status(200).json({
@@ -37,7 +34,6 @@ async function getAllPlans(req, res) {
       error: error
       });
   }}
-
 async function getPlansById(req, res) {
   try{
     let { id } = req.params;
@@ -54,14 +50,12 @@ async function getPlansById(req, res) {
     });
   }
 }
-  
-async function deletePlan(req, res) {
+ async function deletePlan(req, res) {
   try{
-    let { id } = req.params;
+    let {id} = req.params;
     await planModel.findByIdAndDelete(id);
     res.status(200).json({
       message:"Delete Successful",
-      
     })
   }
   catch{
@@ -69,21 +63,29 @@ async function deletePlan(req, res) {
       message: "Delete Failed..",
     });
   }}
-  
-  
+  //by default validator work nai karega ex-if discount is updated greater than price , it successfully updates its value
 async function updatePlan(req, res) {
   try{
-  let { id } = req.params;
-  let updateOb = req.body;
-  let updatedPlan = await planModel.findByIdAndUpdate(id,updateOb,{new:true})
+  let {id} = req.params;
+  let {updateOb} = req.body;
+  // await planModel.findByIdAndUpdate(id,updateOb,{new:true}) ye nai karenge as validator nai kaam karta 
+  let plan = await planModel.findById(id);
+  console.log(updateOb);
+    console.log(plan);
+  for(key in updateOb)
+  plan[key] = updateOb[key];
+ 
+  let updatedPlan = await plan.save();
+  console.log(updatedPlan);
   res.status(200).json({
     message: "Successfully updated",
+    plan : updatedPlan
       });
   }
-  catch{
+  catch(error){
     res.status(501).json({
     message: "Failed..to update Plan",
-    
+    error
     });
   }
 }
