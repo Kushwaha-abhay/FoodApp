@@ -21,7 +21,7 @@ body{
 }
 .showcase-ul{
     display: flex;
-    width: 40%;
+    width: 56%;
     justify-content: space-around;
     list-style: none;
     
@@ -457,7 +457,7 @@ section {
     border: none;
     outline: none;
     border-radius: 3%;
-    width: 95%;
+    width: 100%;
     padding: 3%;
     margin-bottom: 3%;
   }
@@ -561,8 +561,8 @@ section {
     justify-content: left;
   }
   .form-links__group{
-    margin-left:50%;
-    
+    width: 210px;
+    margin-left: 28%;
   }
   .form-links{
   color:gray;

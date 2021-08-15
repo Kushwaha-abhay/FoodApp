@@ -1,4 +1,4 @@
-.navlinks.fixed
+.navlinks
   ul.showcase-ul
     li.showcase-li
       a(href='/') FEATURES
@@ -9,10 +9,11 @@
     li.showcase-li
       a(href='/plans') PLANS
     if name 
-     li.showcase-li #{name}
+     li.showcase-li 
+      a(href='') #{name}
      li.showcase-li
        a(href='/logout') LOG OUT 
     else    
      li.showcase-li
-       a(href='/login') LOGIN
+       a(href='/login') LOG IN
      

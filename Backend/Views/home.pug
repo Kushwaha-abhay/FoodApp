@@ -1,7 +1,7 @@
 extends base.pug
 block header 
  .showcase 
-  include header.pug
+  include homepageHeader.pug
  .showcase-content
   h1.centertext MEAL PLANS.
   h1.centertext
@@ -91,11 +91,11 @@ block header
   .signup-parent
     .signup-child
       .signup-header
-        h3 PREMIUM
+        h3 DIET
         .signup-pricing
-          span.pricing $399
-          | /month
-          p That’s only 13.30$ per meal
+          span.pricing Rs.100
+          | /year
+          p That’s only Rs.9 per meal
       .signup-features
         ul
           li
@@ -110,15 +110,18 @@ block header
           li
             i.fas.fa-check.small-icon  
             | Free delivery
+          li
+            i.fas.fa-check.small-icon  
+            | Rated 4 out of 5
         .signup-button
-          a.btn.btn-full(href='#') I'm hungry
+          a.btn.btn-full(href='#') Subscribe
     .signup-child.active
       .signup-header
-        h3 PREMIUM
+        h3 Monsoon
         .signup-pricing
-          span.pricing $399
-          | /month
-          p That’s only 13.30$ per meal
+          span.pricing Rs.500
+          | /year
+          p That’s only Rs.84 per meal
       .signup-features
         ul
           li
@@ -133,15 +136,18 @@ block header
           li
             i.fas.fa-check.small-icon  
             | Free delivery
+          li
+            i.fas.fa-check.small-icon  
+            | Rated 4.5 out of 5
         .signup-button
-          a.btn.btn-full(href='#') I'm hungry
+          a.btn.btn-full(href='#') Subscribe
     .signup-child
       .signup-header
-        h3 PREMIUM
+        h3 SUMMER
         .signup-pricing
-          span.pricing $399
-          | /month
-          p That’s only 13.30$ per meal
+          span.pricing 800
+          | /year
+          p That’s only Rs.134 per meal
       .signup-features
         ul
           li
@@ -156,8 +162,11 @@ block header
           li
             i.fas.fa-check.small-icon  
             | Free delivery
+          li
+            i.fas.fa-check.small-icon  
+            | Rated 4.5 out of 5
         .signup-button
-          a.btn.btn-full(href='#') I'm hungry
+          a.btn.btn-full(href='#') Subscribe
  section.Input.fadeInUp(style='color: white;')
   h2(style='color: white;') CONTACT US
   .container__parent
