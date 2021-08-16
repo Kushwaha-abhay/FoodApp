@@ -1,7 +1,30 @@
 const userModel = require("../Models/usersModel");
+const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
-const { SECRET_KEY } = require("../config/secrets");
-
+const { SECRET_KEY,GMAIL_ID,GMAIL_PASSWORD } = require("../config/secrets");
+process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
+async function sendMail(message) {
+  try {
+    let transporter = nodemailer.createTransport({
+      service: "gmail",
+      host: "smtp.gmail.com",
+      auth: {
+        user: GMAIL_ID,
+        pass: GMAIL_PASSWORD,
+      },
+    });
+    console.log("inside mail");
+    let res = await transporter.sendMail({
+      from: message.from, // sender address
+      to: message.to, // list of receivers
+      subject: message.subject, // Subject line
+      text: message.text, // plain text body
+    });
+    return res;
+  } catch (error) {
+    return error;
+  }
+}
 async function singup(req, res) {
   try {
     let user = req.body;
@@ -58,15 +81,15 @@ async function login(req, res) {
     res.status(200).json({
       message: "Login failed.catch.",
       error,
-    }); 
+    });
   }
 }
 function isAdmin(roles) {}
-async function isLoggedIn(req, res,next) {
+async function isLoggedIn(req, res, next) {
   try {
     let token = req.cookies.jwt;
     const payload = jwt.verify(token, SECRET_KEY);
-    
+
     if (payload) {
       //console.log(payload);
       let user = await userModel.findById(payload.id);
@@ -78,19 +101,17 @@ async function isLoggedIn(req, res,next) {
       //   message: "Please login",
       // });
     }
-    
-  } catch(error) {
+  } catch (error) {
     next();
   }
 }
-async function logout(req,res){
-  try{
+async function logout(req, res) {
+  try {
     res.clearCookie("jwt");
     res.redirect("/");
-  }
-  catch(error){
+  } catch (error) {
     res.status(501).json({
-      error
+      error,
     });
   }
 }
@@ -136,23 +157,31 @@ async function forgetPassword(req, res) {
   try {
     let { email } = req.body;
     let user = await userModel.findOne({ email: email });
-    console.log(user);
+    //console.log(user);
     if (user) {
       let token = user.createPwdToken();
       console.log(token);
       await user.save({ validateBeforeSave: false });
-      let resetlink = `http://localhost:3000/api/users/resetPassword/${token}`;
+      let resetlink = `http://localhost:3000/resetPassword/${token}`;
+      let message = {
+        from:"no-reply@no-reply.com",
+        to:"abhaynhes@gmail.com",
+        subject:"Reset Password",
+        text:resetlink
+      }
+      let response = sendMail(message);
+      console.log("mail-res",response);
       res.status(200).json({
-        message: "Reset Password",
-        resetlink,
-      });
+        message:"Password reset link sent to mail"
+      })
     } else {
-      res.status(404).json({
+      res.status(200).json({
         message: "User not registered",
       });
     }
   } catch (error) {
-    res.status(501).json({
+    console.log("error",error);
+    res.status(200).json({
       message: "Failed to forget password",
     });
   }
@@ -172,12 +201,12 @@ async function resetPassword(req, res) {
         message: "Reset password Success",
       });
     } else {
-      res.status(501).json({
+      res.status(200).json({
         message: "link Expired..!!",
       });
     }
   } catch (error) {
-    res.status(501).json({
+    res.status(200).json({
       message: "Reset password failed..!!",
       error,
     });

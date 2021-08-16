@@ -23,9 +23,16 @@ async function getPlansPage(req,res){
   }
   
 }
-
+function getForgetPwPage(req,res){
+  res.render("forgetPassword.pug");
+}
+ function getResetPwPage(req,res){
+res.render("resetPassword.pug",{name:req.name});
+}
 module.exports.getDemoPage = getDemoPage;
 module.exports.getHomePage = getHomePage;
 module.exports.getloginPage = getloginPage;
 module.exports.getSingUpPage = getSingUpPage;
 module.exports.getPlansPage = getPlansPage;
+module.exports.getForgetPwPage = getForgetPwPage;
+module.exports.getResetPwPage =getResetPwPage;

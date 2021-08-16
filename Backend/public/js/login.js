@@ -2,6 +2,8 @@ let email = document.querySelector("#email");
 let password = document.querySelector("#password");
 let loginBtn = document.querySelector(".loginBtn");
 let message = document.querySelector("#message");
+let forgetPw = document.querySelector(".forgetPw");
+
 loginBtn.addEventListener("click" , async function(e){
     try{
         e.preventDefault(); // prevent page refresh
@@ -18,4 +20,8 @@ loginBtn.addEventListener("click" , async function(e){
     catch(error){
         console.log(error);
     }
+});
+
+forgetPw.addEventListener("click", function(e){
+    window.location.href = "/forgetPassword";
 })

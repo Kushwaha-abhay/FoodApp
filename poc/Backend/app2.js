@@ -2,23 +2,26 @@ const nodemailer = require("nodemailer");
 const express = require("express");
 
 const app = express();
+process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 async function sendMail() {
   try {
     let transporter = nodemailer.createTransport({
-      host: "smtp.mailtrap.io",
-      port: 2525,
+      service: "gmail",
+      host: "smtp.gmail.com",
       auth: {
-        user: "3ef3ad2c19e361",
-        pass: "a0f51827ada093",
+        user: "abhaynhes@gmail.com",
+        pass: "dkywdrrvfilejyuz",
       },
     });
-    let info = await transporter.sendMail({
-      from: "abhaykumar@ssd.com", // sender address
-      to: "baz@example.com", // list of receivers
-      subject: "Hello ✔", // Subject line
-      text: "Hello world?", // plain text body
+
+    let res = await transporter.sendMail({
+      from: "noreply", // sender address
+      to: "abhaynhes@gmail.com", // list of receivers
+      subject: "Test", // Subject line
+      text: "test", // plain text body
       html: "<b>Hello world?</b>", // html body
     });
+    return res;
   } catch (error) {
     return error;
   }
