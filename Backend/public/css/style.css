@@ -534,6 +534,7 @@ section {
   /* login page css */
   .form-page{
       /* margin:0 auto; */
+      height: 100%;
       width: 100%;
       background-color: white;
       box-shadow: 0 2.5rem 8rem 2rem rgba(0, 0, 0, 0.06);

@@ -1,26 +1,79 @@
-
-extends base
-block content
-  .container-grey
-    .form-container
-      form.signup.form-page
-        h3.heading-secondary SIGNUP
-        .entry
-          .entry-text
-            | Name
-          input(type='text', name='Name', placeholder='Your Name', required='',class="name")
-        .entry
-          .entry-text
-            | Email
-          input(type='email', name='Email', placeholder='Your Email', required='', class="email")
-        .entry
-          .entry-text
-            | Password
-          input(type='password', name='Password', placeholder='**********' class="password")
-        .entry
-          .entry-text
-            | Confirm  Password
-          input(type='password', name="ConfirmPassword", placeholder='**********' class="confirmPassword")
-        .entry
-            .btn-parent.left
-                button(type="submit").btn.btn-full.form-button SIGN UP  
+.signup-parent
+    .signup-child
+      .signup-header
+        h3 DIET
+        .signup-pricing
+          span.pricing Rs.100
+          | /year
+          p That’s only Rs.9 per meal
+      .signup-features
+        ul
+          li
+            i.fas.fa-check.small-icon  
+            | 1 meal every day
+          li
+            i.fas.fa-check.small-icon  
+            | Order 24/7
+          li
+            i.fas.fa-check.small-icon  
+            | Access to newest creations
+          li
+            i.fas.fa-check.small-icon  
+            | Free delivery
+          li
+            i.fas.fa-check.small-icon  
+            | Rated 4 out of 5
+        .signup-button
+          a.btn.btn-full(href='#') Subscribe
+    .signup-child.active
+      .signup-header
+        h3 Monsoon
+        .signup-pricing
+          span.pricing Rs.500
+          | /year
+          p That’s only Rs.84 per meal
+      .signup-features
+        ul
+          li
+            i.fas.fa-check.small-icon  
+            | 1 meal every day
+          li
+            i.fas.fa-check.small-icon  
+            | Order 24/7
+          li
+            i.fas.fa-check.small-icon  
+            | Access to newest creations
+          li
+            i.fas.fa-check.small-icon  
+            | Free delivery
+          li
+            i.fas.fa-check.small-icon  
+            | Rated 4.5 out of 5
+        .signup-button
+          a.btn.btn-full(href='#') Subscribe
+    .signup-child
+      .signup-header
+        h3 SUMMER
+        .signup-pricing
+          span.pricing 800
+          | /year
+          p That’s only Rs.134 per meal
+      .signup-features
+        ul
+          li
+            i.fas.fa-check.small-icon  
+            | 1 meal every day
+          li
+            i.fas.fa-check.small-icon  
+            | Order 24/7
+          li
+            i.fas.fa-check.small-icon  
+            | Access to newest creations
+          li
+            i.fas.fa-check.small-icon  
+            | Free delivery
+          li
+            i.fas.fa-check.small-icon  
+            | Rated 4.5 out of 5
+        .signup-button
+          a.btn.btn-full(href='#') Subscribe

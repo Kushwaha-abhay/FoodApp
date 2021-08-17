@@ -89,84 +89,11 @@ block header
  section.signup
   h2 START EATING HEALTHY TODAY
   .signup-parent
-    .signup-child
-      .signup-header
-        h3 DIET
-        .signup-pricing
-          span.pricing Rs.100
-          | /year
-          p That’s only Rs.9 per meal
-      .signup-features
-        ul
-          li
-            i.fas.fa-check.small-icon  
-            | 1 meal every day
-          li
-            i.fas.fa-check.small-icon  
-            | Order 24/7
-          li
-            i.fas.fa-check.small-icon  
-            | Access to newest creations
-          li
-            i.fas.fa-check.small-icon  
-            | Free delivery
-          li
-            i.fas.fa-check.small-icon  
-            | Rated 4 out of 5
-        .signup-button
-          a.btn.btn-full(href='#') Subscribe
-    .signup-child.active
-      .signup-header
-        h3 Monsoon
-        .signup-pricing
-          span.pricing Rs.500
-          | /year
-          p That’s only Rs.84 per meal
-      .signup-features
-        ul
-          li
-            i.fas.fa-check.small-icon  
-            | 1 meal every day
-          li
-            i.fas.fa-check.small-icon  
-            | Order 24/7
-          li
-            i.fas.fa-check.small-icon  
-            | Access to newest creations
-          li
-            i.fas.fa-check.small-icon  
-            | Free delivery
-          li
-            i.fas.fa-check.small-icon  
-            | Rated 4.5 out of 5
-        .signup-button
-          a.btn.btn-full(href='#') Subscribe
-    .signup-child
-      .signup-header
-        h3 SUMMER
-        .signup-pricing
-          span.pricing 800
-          | /year
-          p That’s only Rs.134 per meal
-      .signup-features
-        ul
-          li
-            i.fas.fa-check.small-icon  
-            | 1 meal every day
-          li
-            i.fas.fa-check.small-icon  
-            | Order 24/7
-          li
-            i.fas.fa-check.small-icon  
-            | Access to newest creations
-          li
-            i.fas.fa-check.small-icon  
-            | Free delivery
-          li
-            i.fas.fa-check.small-icon  
-            | Rated 4.5 out of 5
-        .signup-button
-          a.btn.btn-full(href='#') Subscribe
+    each plan in plans
+     include planCard.pug
+append scripts
+ script(src="https://js.stripe.com/v3/")
+ script(src="./js/buyPlan.js")   
  section.Input.fadeInUp(style='color: white;')
   h2(style='color: white;') CONTACT US
   .container__parent

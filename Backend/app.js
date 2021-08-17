@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser");
 const planRouter = require("./Routers/plansRouter");
 const userRouter = require("./Routers/usersRouter");
 const viewsRouter = require("./Routers/ViewsRouter");
+const bookingRouter = require("./Routers/bookingRouter");
 /*------MiddleWares---------*/
 //It tracks incoming requests and if there is data in request => feeds the data in req body
 app.use(express.json());
@@ -18,7 +19,7 @@ app.use(express.static("public"));
 //   // console.log("middleware 1");
 //   next();
 // });
-
+app.use("/api/booking",bookingRouter);
 app.use("/api/plans",planRouter);
 app.use("/api/users",userRouter);
 app.use("",viewsRouter);

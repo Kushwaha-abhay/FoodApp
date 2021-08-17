@@ -37,8 +37,15 @@ let userschema = new mongoose.Schema({
     enum:["admin","user","resturant owner","delivery boy"],
     default : "user"
 },
+pImage : {
+  type: String,
+  default: "/img/users/default.jpeg"
+},
 pwdToken : String,
-tokenTime : String
+tokenTime : String,
+bookedPlanId : {
+  type : String
+}
 });
 
 userschema.pre("save",function(){

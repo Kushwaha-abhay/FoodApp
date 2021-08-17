@@ -1,7 +1,30 @@
 const express = require("express");
 const userRouter = express.Router();
+const multer = require("multer");
+const storage = multer.diskStorage({
+    
+    destination: function(req , file , cb){
+      cb(null , "public/img/users");
+    } ,
+    filename : function(req , file , cb){
+      cb(null , `user${Date.now()}.jpg`);
+    } 
+  });
 
-const {getAllUsers,getUsersById,createUser,deleteUser,updateUser} = require("../Controller/userController");
+
+function fileFilter(req , file , cb){
+    
+    if(file.mimetype.includes("image")){
+      cb(null , true);
+    }
+    else{
+      cb(null , false);
+    }
+  }
+
+
+const upload = multer({storage:storage , fileFilter:fileFilter});
+const {updateProfileImg,getUsersById,deleteUser,updateUser} = require("../Controller/userController");
 const {singup,login, protectRoute,forgetPassword,resetPassword} = require("../Controller/authController");
 
 userRouter.post("/signup",singup);
@@ -12,12 +35,15 @@ userRouter.patch("/resetPassword/:token", resetPassword);
 // .route("")
 // .get(getAllUsers)
 // .post(createUser);
+userRouter.use(protectRoute);
+
+userRouter.patch("/updateProfileImg",upload.single("user"),updateProfileImg)
 
 userRouter
 .route("")
-.get(protectRoute,getUsersById)
-.patch(protectRoute,updateUser)
-.delete(protectRoute,deleteUser);
+.get(getUsersById)
+.patch(updateUser)
+.delete(deleteUser);
 
 
 module.exports = userRouter;

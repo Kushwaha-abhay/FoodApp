@@ -4,8 +4,15 @@ function getDemoPage(req, res) {
   //res.render("demo.pug",{title:"Demo Page"});
   res.render("base.pug");
 }
-function getHomePage(req, res) {
-   res.render("home.pug", {name:req.name});
+async function getHomePage(req, res) {
+  try{
+    let plans = await plansModel.find(); 
+    plans = plans.splice(0 , 3);
+    res.render("home.pug" , {name:req.name , plans});
+  }
+  catch(error){
+    console.log(error);
+  }
 }
 function getloginPage(req, res) {
   res.render("login.pug",{name:req.name});
@@ -29,6 +36,10 @@ function getForgetPwPage(req,res){
  function getResetPwPage(req,res){
 res.render("resetPassword.pug",{name:req.name});
 }
+function getProfilePage(req,res){
+  res.render("profilePage.pug",{user:req.user});
+}
+
 module.exports.getDemoPage = getDemoPage;
 module.exports.getHomePage = getHomePage;
 module.exports.getloginPage = getloginPage;
@@ -36,3 +47,4 @@ module.exports.getSingUpPage = getSingUpPage;
 module.exports.getPlansPage = getPlansPage;
 module.exports.getForgetPwPage = getForgetPwPage;
 module.exports.getResetPwPage =getResetPwPage;
+module.exports.getProfilePage = getProfilePage;

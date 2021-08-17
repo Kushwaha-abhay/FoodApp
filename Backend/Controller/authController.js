@@ -94,6 +94,7 @@ async function isLoggedIn(req, res, next) {
       //console.log(payload);
       let user = await userModel.findById(payload.id);
       req.name = user.name;
+      req.user = user;
       next();
     } else {
       next();
@@ -190,6 +191,7 @@ async function resetPassword(req, res) {
   try {
     let { password, confirmPassword } = req.body;
     let token = req.params.token;
+    console.log("resetpassword",token,password,confirmPassword);
     const user = await userModel.findOne({
       pwdToken: token,
       tokenTime: { $gt: Date.now() },
